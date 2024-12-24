@@ -8,11 +8,11 @@ void print_postfix(const char *str) {
     printf("%s ", str);
 }
 %}
-%token NUMBER
-%token PLUS MINUS MUL DIV END
-%token OPEN CLOSE
+
+%token NUMBER PLUS MINUS MUL DIV END OPEN CLOSE
+
 %%
-command: %empty
+command:
 	 |command exp END { printf(" " ); }
     ;
 exp:
@@ -37,9 +37,8 @@ term:
     NUMBER {
         printf("%d ", $1);
     }
-    | OPEN exp CLOSE { 
-    }
-    ;
+    | OPEN exp CLOSE { }
+	;
 %% 
 void yyerror(const char *str) {
     fprintf(stderr, "Ошибка: %s\n", str);
