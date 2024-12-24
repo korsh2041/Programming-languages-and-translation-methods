@@ -3,19 +3,9 @@
 %}
 
 %%
-stop                                 {printf("Given comand: stop");}
-start                                {printf("Given comand: start");}
-[0-9]+                             {printf("number: %s\n",yytext);}
-[a-zA-Z][a-zA-Z0-9]*        {printf("word: %s\n",yytext);}
-"+" |
-"-"  |
-"=" |
-"/"  |
-"*"                                   {printf("Given operator: %s\n",yytext);}
-[\t\n]
+start					printf("START");
+[0123456789]+           printf("NUMBER\n");
+[a-zA-Z][a-zA-Z0-9]*    printf("WORD\n");
+\n
+\t
 %%
-
-int main ( int argc, char **argv){
-	yylex();
-	return 0;
-}
