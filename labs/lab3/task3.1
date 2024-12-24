@@ -3,9 +3,10 @@
 %}
 
 %%
-start					printf("START");
+start					printf("START\n");
 [0123456789]+           printf("NUMBER\n");
 [a-zA-Z][a-zA-Z0-9]*    printf("WORD\n");
+stop					printf("STOP\n");
 \n
 \t
 %%
