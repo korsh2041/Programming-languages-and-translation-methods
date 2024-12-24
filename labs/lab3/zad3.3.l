@@ -3,9 +3,10 @@
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
-	#include "task3.tab.h"
-//extern YYSTYPE yylval;
+	#include "y.tab.h"
+
 %}
+
 %%
 [0-9]+ {yylval= atoi(yytext); return NUMBER;}
 "+"    {return PLUS;}
