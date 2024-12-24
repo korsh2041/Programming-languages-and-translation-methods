@@ -6,9 +6,9 @@ int yylex();
 int yyerror( char *s);
 %}
 /* Описать грамматику, позволяющую вычислять значения арифметических выражений, состоящих из целых чисел и знаков «+» и «-» */
-%token EOL
-%token NUMBER
-%token PLUS MINUS
+%token EOL NUMBER PLUS MINUS
+
+
 %%
 input:
 |    line input;
@@ -16,9 +16,11 @@ line:
     exp EOL {printf("%d\n",$1);}
 |   EOL;
 exp:
-    NUMBER {$$=$1;}
-|   exp PLUS NUMBER {$$=$1+$3;}
-|   exp MINUS NUMBER {$$=$1-$3;};
+	tok
+|   exp PLUS tok {$$=$1+$3;}
+|   exp MINUS tok {$$=$1-$3;};
+tok:
+	NUMBER {$$ = $1;}
 %%
 int main(){
     yyparse();
